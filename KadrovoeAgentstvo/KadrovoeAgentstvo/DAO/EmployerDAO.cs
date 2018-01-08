@@ -8,7 +8,7 @@ namespace KadrovoeAgentstvo.DAO
     public class EmployerDAO
     {
 
-        public void CreateApplication()
+        //public void CreateApplication()
 
     }
 }

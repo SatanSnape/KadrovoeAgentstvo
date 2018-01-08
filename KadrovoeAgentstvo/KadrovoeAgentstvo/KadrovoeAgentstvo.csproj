@@ -195,8 +195,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\SpecialityController.cs" />
     <Compile Include="DAO\EmployerDAO.cs" />
     <Compile Include="DAO\PersonDAO.cs" />
+    <Compile Include="DAO\SpecialityDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,6 +333,10 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Speciality\Index.cshtml" />
+    <Content Include="Views\Speciality\Create.cshtml" />
+    <Content Include="Views\Speciality\Edit.cshtml" />
+    <Content Include="Views\Speciality\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
