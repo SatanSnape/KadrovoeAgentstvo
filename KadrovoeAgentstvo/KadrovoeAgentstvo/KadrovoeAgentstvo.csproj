@@ -193,10 +193,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
+    <Compile Include="Controllers\AspirantController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\SpecialityController.cs" />
+    <Compile Include="DAO\AspirantDAO.cs" />
     <Compile Include="DAO\EmployerDAO.cs" />
     <Compile Include="DAO\PersonDAO.cs" />
     <Compile Include="DAO\SpecialityDAO.cs" />

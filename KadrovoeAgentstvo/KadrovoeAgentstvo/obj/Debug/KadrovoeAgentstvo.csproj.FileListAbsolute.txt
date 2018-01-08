@@ -191,3 +191,6 @@ D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\bin\Mic
 D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\bin\Microsoft.AI.WindowsServer.xml
 D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\bin\Microsoft.AI.Web.xml
+C:\Users\segaa\Documents\Repos\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.csprojResolveAssemblyReference.cache
+C:\Users\segaa\Documents\Repos\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.dll
+C:\Users\segaa\Documents\Repos\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.pdb
