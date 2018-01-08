@@ -25,8 +25,8 @@ namespace KadrovoeAgentstvo.Models
         public string State { get; set; }
         public Nullable<int> JobDirectoryId { get; set; }
     
-        public virtual JobDirectory JobDirectory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+        public virtual JobDirectory JobDirectory { get; set; }
     }
 }

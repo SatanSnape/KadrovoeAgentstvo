@@ -1,0 +1,84 @@
+﻿@model KadrovoeAgentstvo.Models.Application
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Application</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Speciality name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Speciality.Name)
+        </dd>
+
+        <dt>
+            Max salary
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.MaxSalary)
+        </dd>
+
+        <dt>
+            Min salary
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.MinSalary)
+        </dd>
+
+        <dt>
+            Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duties)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

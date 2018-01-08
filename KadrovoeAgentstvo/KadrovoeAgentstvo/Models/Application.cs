@@ -22,10 +22,14 @@ namespace KadrovoeAgentstvo.Models
     
         public int ApplicationId { get; set; }
         public System.DateTime Date { get; set; }
-        public int State { get; set; }
         public int JobDirectoryId { get; set; }
+        public int SpecialityId { get; set; }
+        public string State { get; set; }
+        public string Duties { get; set; }
+        public string Requirements { get; set; }
     
         public virtual JobDirectory JobDirectory { get; set; }
+        public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
     }
