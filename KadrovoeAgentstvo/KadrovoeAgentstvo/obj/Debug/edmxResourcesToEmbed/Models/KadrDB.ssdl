@@ -106,7 +106,7 @@
     <Property Name="ApplicationId" Type="int" />
     <Property Name="ProfileId" Type="int" />
     <Property Name="CompanyId" Type="int" />
-    <Property Name="Speciality" Type="varchar" MaxLength="100" />
+    <Property Name="SpecialityId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -116,6 +116,13 @@
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="JobDirectoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="SpecialityId" />
+    </Key>
+    <Property Name="SpecialityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <Association Name="FK_Application_JobDirectory">
     <End Role="JobDirectory" Type="Self.JobDirectory" Multiplicity="1" />
@@ -221,6 +228,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_People_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="SpecialityId" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="SpecialityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_JobDirectory">
     <End Role="JobDirectory" Type="Self.JobDirectory" Multiplicity="0..1" />
     <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
@@ -245,6 +264,7 @@
     <EntitySet Name="JobDirectory" EntityType="Self.JobDirectory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Application_JobDirectory" Association="Self.FK_Application_JobDirectory">
       <End Role="JobDirectory" EntitySet="JobDirectory" />
       <End Role="Application" EntitySet="Application" />
@@ -275,6 +295,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_People_Profile" Association="Self.FK_People_Profile">
       <End Role="Profile" EntitySet="Profile" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Speciality" Association="Self.FK_People_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
       <End Role="People" EntitySet="People" />
     </AssociationSet>
     <AssociationSet Name="FK_Profile_JobDirectory" Association="Self.FK_Profile_JobDirectory">

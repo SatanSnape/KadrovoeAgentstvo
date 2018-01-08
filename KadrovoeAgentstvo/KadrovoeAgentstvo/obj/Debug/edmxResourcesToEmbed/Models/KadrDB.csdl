@@ -102,12 +102,17 @@
     <EntitySet Name="Applications" EntityType="KadrovoeAgentstvoModel.Application" />
     <EntitySet Name="Companies" EntityType="KadrovoeAgentstvoModel.Company" />
     <EntitySet Name="JobDirectories" EntityType="KadrovoeAgentstvoModel.JobDirectory" />
-    <EntitySet Name="People" EntityType="KadrovoeAgentstvoModel.Person" />
     <EntitySet Name="Profiles" EntityType="KadrovoeAgentstvoModel.Profile" />
     <AssociationSet Name="FK_Application_JobDirectory" Association="KadrovoeAgentstvoModel.FK_Application_JobDirectory">
       <End Role="JobDirectory" EntitySet="JobDirectories" />
       <End Role="Application" EntitySet="Applications" />
     </AssociationSet>
+    <AssociationSet Name="FK_Profile_JobDirectory" Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory">
+      <End Role="JobDirectory" EntitySet="JobDirectories" />
+      <End Role="Profile" EntitySet="Profiles" />
+    </AssociationSet>
+    <EntitySet Name="Specialities" EntityType="KadrovoeAgentstvoModel.Speciality" />
+    <EntitySet Name="People" EntityType="KadrovoeAgentstvoModel.Person" />
     <AssociationSet Name="FK_People_Application" Association="KadrovoeAgentstvoModel.FK_People_Application">
       <End Role="Application" EntitySet="Applications" />
       <End Role="Person" EntitySet="People" />
@@ -116,12 +121,12 @@
       <End Role="Company" EntitySet="Companies" />
       <End Role="Person" EntitySet="People" />
     </AssociationSet>
-    <AssociationSet Name="FK_Profile_JobDirectory" Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory">
-      <End Role="JobDirectory" EntitySet="JobDirectories" />
-      <End Role="Profile" EntitySet="Profiles" />
-    </AssociationSet>
     <AssociationSet Name="FK_People_Profile" Association="KadrovoeAgentstvoModel.FK_People_Profile">
       <End Role="Profile" EntitySet="Profiles" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Speciality" Association="KadrovoeAgentstvoModel.FK_People_Speciality">
+      <End Role="Speciality" EntitySet="Specialities" />
       <End Role="Person" EntitySet="People" />
     </AssociationSet>
   </EntityContainer>
@@ -172,24 +177,6 @@
     <NavigationProperty Name="Applications" Relationship="KadrovoeAgentstvoModel.FK_Application_JobDirectory" FromRole="JobDirectory" ToRole="Application" />
     <NavigationProperty Name="Profiles" Relationship="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" FromRole="JobDirectory" ToRole="Profile" />
   </EntityType>
-  <EntityType Name="Person">
-    <Key>
-      <PropertyRef Name="PersonId" />
-    </Key>
-    <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Pathronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Passport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="DateBirth" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ApplicationId" Type="Int32" />
-    <Property Name="ProfileId" Type="Int32" />
-    <Property Name="CompanyId" Type="Int32" />
-    <Property Name="Speciality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Person" ToRole="Application" />
-    <NavigationProperty Name="Company" Relationship="KadrovoeAgentstvoModel.FK_People_Company" FromRole="Person" ToRole="Company" />
-    <NavigationProperty Name="Profile" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Person" ToRole="Profile" />
-  </EntityType>
   <EntityType Name="Profile">
     <Key>
       <PropertyRef Name="ProfileId" />
@@ -213,6 +200,45 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Profile_JobDirectory">
+    <End Type="KadrovoeAgentstvoModel.JobDirectory" Role="JobDirectory" Multiplicity="0..1" />
+    <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobDirectory">
+        <PropertyRef Name="JobDirectoryId" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="JobDirectoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="SpecialityId" />
+    </Key>
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Speciality" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonId" />
+    </Key>
+    <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Pathronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Passport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateBirth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ApplicationId" Type="Int32" />
+    <Property Name="ProfileId" Type="Int32" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Person" ToRole="Application" />
+    <NavigationProperty Name="Company" Relationship="KadrovoeAgentstvoModel.FK_People_Company" FromRole="Person" ToRole="Company" />
+    <NavigationProperty Name="Profile" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Person" ToRole="Profile" />
+    <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Person" ToRole="Speciality" />
+  </EntityType>
   <Association Name="FK_People_Application">
     <End Type="KadrovoeAgentstvoModel.Application" Role="Application" Multiplicity="0..1" />
     <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
@@ -237,18 +263,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Profile_JobDirectory">
-    <End Type="KadrovoeAgentstvoModel.JobDirectory" Role="JobDirectory" Multiplicity="0..1" />
-    <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JobDirectory">
-        <PropertyRef Name="JobDirectoryId" />
-      </Principal>
-      <Dependent Role="Profile">
-        <PropertyRef Name="JobDirectoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_People_Profile">
     <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="0..1" />
     <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
@@ -258,6 +272,18 @@
       </Principal>
       <Dependent Role="Person">
         <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_Speciality">
+    <End Type="KadrovoeAgentstvoModel.Speciality" Role="Speciality" Multiplicity="1" />
+    <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="SpecialityId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="SpecialityId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

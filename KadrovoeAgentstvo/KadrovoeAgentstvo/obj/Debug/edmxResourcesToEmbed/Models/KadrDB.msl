@@ -99,10 +99,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Profile">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialities">
+      <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Speciality">
+        <MappingFragment StoreEntitySet="Speciality">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="People">
       <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Person">
         <MappingFragment StoreEntitySet="People">
-          <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+          <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
           <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
           <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
           <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
@@ -112,16 +130,6 @@
           <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Profiles">
-      <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Profile">
-        <MappingFragment StoreEntitySet="Profile">
-          <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

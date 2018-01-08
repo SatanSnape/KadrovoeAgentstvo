@@ -195,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="DAO\EmployerDAO.cs" />
     <Compile Include="DAO\PersonDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,6 +248,9 @@
     <Compile Include="Models\PersonTypeViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\Profile.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Speciality.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

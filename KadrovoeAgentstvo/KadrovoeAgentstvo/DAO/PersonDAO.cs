@@ -23,8 +23,8 @@ namespace KadrovoeAgentstvo.DAO
                 Passport = person.Passport,
                 PersonType = new PersonTypeViewModel
                 {
-                    PersonTypeId = person.PeopleTypeId,
-                    Name = person.PeopleType.Name
+                    //PersonTypeId = person.PeopleTypeId,
+                    //Name = person.PeopleType.Name
                 }
             }).ToList();
             return people;
