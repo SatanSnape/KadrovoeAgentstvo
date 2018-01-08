@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="KadrovoeAgentstvoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="int" Nullable="false" />
+    <Property Name="JobDirectoryId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
@@ -51,6 +70,29 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="HouseNumber" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ApartmentNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JobDirectory">
+    <Key>
+      <PropertyRef Name="JobDirectoryId" />
+    </Key>
+    <Property Name="JobDirectoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MinSalary" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="MaxSalary" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
   <EntityType Name="People">
     <Key>
       <PropertyRef Name="PersonId" />
@@ -61,15 +103,32 @@
     <Property Name="Pathronymic" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Passport" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="DateBirth" Type="datetime" Nullable="false" />
-    <Property Name="PeopleTypeId" Type="int" Nullable="false" />
+    <Property Name="ApplicationId" Type="int" />
+    <Property Name="ProfileId" Type="int" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="Speciality" Type="varchar" MaxLength="100" />
   </EntityType>
-  <EntityType Name="PeopleType">
+  <EntityType Name="Profile">
     <Key>
-      <PropertyRef Name="PeopleTypeId" />
+      <PropertyRef Name="ProfileId" />
     </Key>
-    <Property Name="PeopleTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProfileId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="JobDirectoryId" Type="int" />
   </EntityType>
+  <Association Name="FK_Application_JobDirectory">
+    <End Role="JobDirectory" Type="Self.JobDirectory" Multiplicity="1" />
+    <End Role="Application" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobDirectory">
+        <PropertyRef Name="JobDirectoryId" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="JobDirectoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -126,26 +185,70 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_People_PeopleType">
-    <End Role="PeopleType" Type="Self.PeopleType" Multiplicity="1" />
+  <Association Name="FK_People_Application">
+    <End Role="Application" Type="Self.Application" Multiplicity="0..1" />
     <End Role="People" Type="Self.People" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PeopleType">
-        <PropertyRef Name="PeopleTypeId" />
+      <Principal Role="Application">
+        <PropertyRef Name="ApplicationId" />
       </Principal>
       <Dependent Role="People">
-        <PropertyRef Name="PeopleTypeId" />
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="CompanyId" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_People_Profile">
+    <End Role="Profile" Type="Self.Profile" Multiplicity="0..1" />
+    <End Role="People" Type="Self.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="ProfileId" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Profile_JobDirectory">
+    <End Role="JobDirectory" Type="Self.JobDirectory" Multiplicity="0..1" />
+    <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobDirectory">
+        <PropertyRef Name="JobDirectoryId" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="JobDirectoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="KadrovoeAgentstvoModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JobDirectory" EntityType="Self.JobDirectory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="PeopleType" EntityType="Self.PeopleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Application_JobDirectory" Association="Self.FK_Application_JobDirectory">
+      <End Role="JobDirectory" EntitySet="JobDirectory" />
+      <End Role="Application" EntitySet="Application" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -162,9 +265,21 @@
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <AssociationSet Name="FK_People_PeopleType" Association="Self.FK_People_PeopleType">
-      <End Role="PeopleType" EntitySet="PeopleType" />
+    <AssociationSet Name="FK_People_Application" Association="Self.FK_People_Application">
+      <End Role="Application" EntitySet="Application" />
       <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Company" Association="Self.FK_People_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_People_Profile" Association="Self.FK_People_Profile">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_JobDirectory" Association="Self.FK_Profile_JobDirectory">
+      <End Role="JobDirectory" EntitySet="JobDirectory" />
+      <End Role="Profile" EntitySet="Profile" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

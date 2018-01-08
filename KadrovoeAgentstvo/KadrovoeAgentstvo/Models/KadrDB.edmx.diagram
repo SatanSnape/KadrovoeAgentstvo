@@ -5,17 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8e43b4b3c04a414cb77b450bf8fe300a" Name="Diagram1">
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Person" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.PeopleType" Width="1.5" PointX="3.125" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetRole" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUserClaim" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUserLogin" Width="1.5" PointX="5.125" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.AspNetUser" Width="1.5" PointX="2.875" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_PeopleType" />
-      </Diagram>
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Application" Width="1.5" PointX="3" PointY="10.75" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Company" Width="1.5" PointX="3" PointY="14.125" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.JobDirectory" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Person" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Profile" Width="1.5" PointX="3" PointY="7.875" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_JobDirectory" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Application" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Company" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Profile" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

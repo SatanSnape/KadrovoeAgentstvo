@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -199,6 +200,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Application.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
@@ -211,7 +215,16 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Company.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JobDirectory.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\KadrDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -228,14 +241,14 @@
       <DependentUpon>KadrDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PeopleType.cs">
-      <DependentUpon>KadrDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Person.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PersonTypeViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
+    <Compile Include="Models\Profile.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

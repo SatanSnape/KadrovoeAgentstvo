@@ -12,16 +12,21 @@ namespace KadrovoeAgentstvo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PeopleType
+    public partial class Company
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PeopleType()
+        public Company()
         {
             this.People = new HashSet<Person>();
         }
     
-        public int PeopleTypeId { get; set; }
+        public int CompanyId { get; set; }
         public string Name { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string HouseNumber { get; set; }
+        public int ApartmentNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }

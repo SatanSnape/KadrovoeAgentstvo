@@ -94,3 +94,7 @@ D:\Freelance\KadrAgenstvo\Проект\KadrovoeAgentstvo\KadrovoeAgentstvo\bin\M
 D:\Freelance\KadrAgenstvo\Проект\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.csprojResolveAssemblyReference.cache
 D:\Freelance\KadrAgenstvo\Проект\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.dll
 D:\Freelance\KadrAgenstvo\Проект\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.pdb
+D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.csprojResolveAssemblyReference.cache
+D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.csproj.CoreCompileInputs.cache
+D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.dll
+D:\Freelance\KadrAgenstvo\Repository\KadrovoeAgentstvo\KadrovoeAgentstvo\obj\Debug\KadrovoeAgentstvo.pdb

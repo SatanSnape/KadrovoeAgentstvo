@@ -20,8 +20,13 @@ namespace KadrovoeAgentstvo.Models
         public string Pathronymic { get; set; }
         public string Passport { get; set; }
         public System.DateTime DateBirth { get; set; }
-        public int PeopleTypeId { get; set; }
+        public Nullable<int> ApplicationId { get; set; }
+        public Nullable<int> ProfileId { get; set; }
+        public Nullable<int> CompanyId { get; set; }
+        public string Speciality { get; set; }
     
-        public virtual PeopleType PeopleType { get; set; }
+        public virtual Application Application { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual Profile Profile { get; set; }
     }
 }

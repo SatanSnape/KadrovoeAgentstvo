@@ -29,7 +29,11 @@ namespace KadrovoeAgentstvo.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<Application> Applications { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<JobDirectory> JobDirectories { get; set; }
         public virtual DbSet<Person> People { get; set; }
-        public virtual DbSet<PeopleType> PeopleTypes { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
     }
 }
