@@ -20,12 +20,7 @@ namespace KadrovoeAgentstvo.DAO
                 Surname = person.Surname,
                 Pathronymic = person.Pathronymic,
                 BirthDate = person.DateBirth,
-                Passport = person.Passport,
-                PersonType = new PersonTypeViewModel
-                {
-                    //PersonTypeId = person.PeopleTypeId,
-                    //Name = person.PeopleType.Name
-                }
+                Passport = person.Passport,              
             }).ToList();
             return people;
         }

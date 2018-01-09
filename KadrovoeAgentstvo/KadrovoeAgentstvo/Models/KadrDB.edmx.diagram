@@ -27,6 +27,9 @@
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Application" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_AspNetUsers" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Request" Width="1.5" PointX="11.875" PointY="7.625" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_Application" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_People" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

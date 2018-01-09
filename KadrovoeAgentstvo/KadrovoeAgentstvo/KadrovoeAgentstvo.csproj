@@ -255,6 +255,9 @@
     <Compile Include="Models\Profile.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Request.cs">
+      <DependentUpon>KadrDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Speciality.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>

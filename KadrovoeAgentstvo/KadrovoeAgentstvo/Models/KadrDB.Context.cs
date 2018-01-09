@@ -36,5 +36,6 @@ namespace KadrovoeAgentstvo.Models
         public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<JobDirectory> JobDirectories { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
     }
 }
