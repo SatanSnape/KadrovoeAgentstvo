@@ -30,7 +30,7 @@ namespace KadrovoeAgentstvo.DAO
                 Description = app.JobDirectory.Description
             };
             _db.JobDirectories.Add(jobDirectory);
-            _db.SaveChanges();           
+            _db.SaveChanges();
             Application appEntity = new Application
             {
                 Date = DateTime.UtcNow,
@@ -68,6 +68,20 @@ namespace KadrovoeAgentstvo.DAO
                 throw new Exception("Запрашиваемое заявление не найдено");
             _db.JobDirectories.Remove(job);
             _db.Applications.Remove(appEntity);
+            _db.SaveChanges();
+        }
+
+        public void LeaveApplication(int appId)
+        {
+            var currentUser = HttpContext.Current.User.Identity.Name;
+            var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
+            var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
+            Request request = new Request
+            {
+                ApplicationId = appId,
+                PersonId = person.PersonId
+            };
+            _db.Requests.Add(request);
             _db.SaveChanges();
         }
 

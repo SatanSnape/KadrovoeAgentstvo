@@ -13,9 +13,8 @@ namespace KadrovoeAgentstvo.Controllers
     {
         AspirantDAO dao = new AspirantDAO();
 
-        public ActionResult Index(Person person)
-        {
-            dao.CreatePerson(person);
+        public ActionResult Index()
+        {  
             return View();
         }
 
