@@ -115,6 +115,7 @@
           <Property Name="ProfileId" Type="int" />
           <Property Name="CompanyId" Type="int" />
           <Property Name="SpecialityId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -224,6 +225,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_People_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="People" Type="Self.People" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="People">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_People_Company">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
           <End Role="People" Type="Self.People" Multiplicity="*" />
@@ -313,6 +326,10 @@
             <End Role="Application" EntitySet="Application" />
             <End Role="People" EntitySet="People" />
           </AssociationSet>
+          <AssociationSet Name="FK_People_AspNetUsers" Association="Self.FK_People_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="People" EntitySet="People" />
+          </AssociationSet>
           <AssociationSet Name="FK_People_Company" Association="Self.FK_People_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="People" EntitySet="People" />
@@ -382,6 +399,7 @@
           <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_AspNetUsers" FromRole="AspNetUser" ToRole="Person" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -467,6 +485,10 @@
             <End Role="JobDirectory" EntitySet="JobDirectories" />
             <End Role="Profile" EntitySet="Profiles" />
           </AssociationSet>
+          <AssociationSet Name="FK_People_AspNetUsers" Association="KadrovoeAgentstvoModel.FK_People_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Person" EntitySet="People" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -529,6 +551,8 @@
           <NavigationProperty Name="Profile" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Person" ToRole="Profile" />
           <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Person" ToRole="Speciality" />
           <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Person" ToRole="Application" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="KadrovoeAgentstvoModel.FK_People_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_People_Company">
           <End Type="KadrovoeAgentstvoModel.Company" Role="Company" Multiplicity="0..1" />
@@ -642,6 +666,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_People_AspNetUsers">
+          <End Type="KadrovoeAgentstvoModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -745,6 +781,7 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Person">
               <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />

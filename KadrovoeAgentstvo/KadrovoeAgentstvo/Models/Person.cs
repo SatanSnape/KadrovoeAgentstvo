@@ -24,10 +24,12 @@ namespace KadrovoeAgentstvo.Models
         public Nullable<int> ProfileId { get; set; }
         public Nullable<int> CompanyId { get; set; }
         public int SpecialityId { get; set; }
+        public string UserId { get; set; }
     
         public virtual Company Company { get; set; }
         public virtual Profile Profile { get; set; }
         public virtual Speciality Speciality { get; set; }
         public virtual Application Application { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

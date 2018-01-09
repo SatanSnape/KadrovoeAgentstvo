@@ -30,7 +30,7 @@ namespace KadrovoeAgentstvo.DAO
                 Description = app.JobDirectory.Description
             };
             _db.JobDirectories.Add(jobDirectory);
-            _db.SaveChanges();
+            _db.SaveChanges();           
             Application appEntity = new Application
             {
                 Date = DateTime.UtcNow,
