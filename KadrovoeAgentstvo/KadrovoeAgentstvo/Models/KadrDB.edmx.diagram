@@ -25,11 +25,14 @@
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Company" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_People" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Profile" Width="1.5" PointX="9.625" PointY="8.625" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="7.375" PointY="3.875" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="7.625" PointY="3.25" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_Speciality" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Profile" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" ManuallyRouted="true" >
+          <ConnectorPoint PointX="9.125" PointY="3.90625" />
+          <ConnectorPoint PointX="11.875" PointY="3.90625" />
+        </AssociationConnector>
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_Speciality" />
         </Diagram>
     </edmx:Diagrams>

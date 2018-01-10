@@ -9,6 +9,8 @@ namespace KadrovoeAgentstvo.DAO
     {
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
+        public List<Speciality> GetAllSpecilities() => _db.Specialities.ToList();
+
         public List<Profile> GetProfilesByPersonId()
         {
             var currentUser = HttpContext.Current.User.Identity.Name;
@@ -16,8 +18,8 @@ namespace KadrovoeAgentstvo.DAO
             var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
             if (person == null)
                 return new List<Profile>();
-            var profiles = _db.People.FirstOrDefault(x => x.PersonId == person.PersonId).Profile;
-            return null;
+            var profiles = _db.Profiles.Where(x => x.PersonId == person.PersonId).ToList();
+            return profiles;
 
         }
 
@@ -37,19 +39,19 @@ namespace KadrovoeAgentstvo.DAO
             });
         }
 
-        public void CreateProfile(int jobDirectoryId, int personId)
+        public void CreateProfile(Profile profile)
         {
-            var person = _db.People.First(x => x.PersonId == personId);
-            var jobDirectory = _db.JobDirectories.First(x => x.JobDirectoryId == jobDirectoryId);
+            var jobDirectory = _db.JobDirectories.First(x => x.Profiles.Contains(profile));
             _db.Profiles.Add(new Profile
             {
                 Date = DateTime.Now,
-                //People = person,
-                //JobDirectory = jobDirectory,
-                //JobDirectoryId = jobDirectory.JobDirectoryId,
-                //ProfileId = person.ProfileId,
+                People = profile.People,
+                JobDirectory = jobDirectory,
+                JobDirectoryId = jobDirectory.JobDirectoryId,
+                ProfileId = profile.ProfileId,
                 State = "Заявление создано"
             });
+            _db.SaveChanges();
         }
     }
 }

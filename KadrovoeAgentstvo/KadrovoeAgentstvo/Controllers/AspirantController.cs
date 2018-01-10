@@ -14,14 +14,23 @@ namespace KadrovoeAgentstvo.Controllers
         AspirantDAO dao = new AspirantDAO();
 
         public ActionResult Index()
-        {  
+        {
+            var list = dao.GetProfilesByPersonId();
+            return View(list);
+        }
+        
+        [HttpPost]
+        public ActionResult CreateProfile(Profile profile)
+        {
+            dao.CreateProfile(profile);
             return View();
         }
 
-        public ActionResult CreateProfile(int jobId, int personId)
+        public ActionResult CreateProfile()
         {
-            dao.CreateProfile(jobId, personId);
-            return View();
+            var specialities = new SelectList(dao.GetAllSpecilities(), "SpecialityId", "Name");
+            ViewBag.Specialities = specialities;
+            return RedirectToAction("Index");
         }
     }
 }
