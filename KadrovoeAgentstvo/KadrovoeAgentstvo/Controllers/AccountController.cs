@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using KadrovoeAgentstvo.Models;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace KadrovoeAgentstvo.Controllers
 {
@@ -164,6 +165,12 @@ namespace KadrovoeAgentstvo.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                IdentityUserRole role = new IdentityUserRole
+                {
+                    RoleId = model.Role.Id,
+                    UserId = user.Id
+                };
+                user.Roles.Add(role);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -172,7 +179,6 @@ namespace KadrovoeAgentstvo.Controllers
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
