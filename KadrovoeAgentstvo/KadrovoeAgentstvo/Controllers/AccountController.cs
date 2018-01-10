@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using KadrovoeAgentstvo.Models;
+using System.Collections.Generic;
 
 namespace KadrovoeAgentstvo.Controllers
 {
@@ -17,6 +18,7 @@ namespace KadrovoeAgentstvo.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
         public AccountController()
         {
@@ -134,6 +136,21 @@ namespace KadrovoeAgentstvo.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<AspNetRole> roles = new List<AspNetRole>
+            {
+                new AspNetRole
+                {
+                    Id = "Aspirant",
+                    Name = "Aspirant"
+                },
+                new AspNetRole
+                {
+                    Id = "Employer",
+                    Name = "Employer"
+                }
+            };
+            var viewRoles = new SelectList(roles, "Id", "Name");
+            ViewBag.Roles = viewRoles;
             return View();
         }
 

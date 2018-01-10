@@ -19,6 +19,7 @@ namespace KadrovoeAgentstvo.Models
         {
             this.Applications = new HashSet<Application>();
             this.People = new HashSet<Person>();
+            this.Profiles = new HashSet<Profile>();
         }
     
         public int SpecialityId { get; set; }
@@ -28,5 +29,7 @@ namespace KadrovoeAgentstvo.Models
         public virtual ICollection<Application> Applications { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Profile> Profiles { get; set; }
     }
 }

@@ -79,6 +79,7 @@ namespace KadrovoeAgentstvo.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        public AspNetRole Role{ get; set; }
     }
 
     public class ResetPasswordViewModel

@@ -124,3 +124,6 @@ KadrovoeAgentstvo/KadrovoeAgentstvo/bin/ApplicationInsights.config
 KadrovoeAgentstvo/KadrovoeAgentstvo/bin/Antlr3.Runtime.pdb
 KadrovoeAgentstvo/KadrovoeAgentstvo/bin/Antlr3.Runtime.dll
 KadrovoeAgentstvo/KadrovoeAgentstvo/obj/Debug/TempPE/Models.KadrDB.Context.cs.dll
+KadrovoeAgentstvo/KadrovoeAgentstvo.Tests/obj/Debug/KadrovoeAgentstvo.Tests.csproj.FileListAbsolute.txt
+KadrovoeAgentstvo/KadrovoeAgentstvo.Tests/bin/Debug/KadrovoeAgentstvo.dll.config
+KadrovoeAgentstvo/KadrovoeAgentstvo.Tests/bin/Debug/KadrovoeAgentstvo.Tests.dll.config

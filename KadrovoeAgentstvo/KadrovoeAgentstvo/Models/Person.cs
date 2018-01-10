@@ -35,9 +35,9 @@ namespace KadrovoeAgentstvo.Models
         public virtual Application Application { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual Company Company { get; set; }
-        public virtual Profile Profile { get; set; }
-        public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Requests { get; set; }
+        public virtual Profile Profile { get; set; }
+        public virtual Speciality Speciality { get; set; }
     }
 }
