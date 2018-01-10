@@ -88,5 +88,19 @@ namespace KadrovoeAgentstvo.Controllers
                 return View();
             }
         }
+
+        public ActionResult LeaveApplication(int applicationId)
+        {
+            try
+            {
+                eDAO.LeaveApplication(applicationId);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }

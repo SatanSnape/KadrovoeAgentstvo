@@ -9,6 +9,18 @@ namespace KadrovoeAgentstvo.DAO
     {
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
+        public List<Profile> GetProfilesByPersonId()
+        {
+            var currentUser = HttpContext.Current.User.Identity.Name;
+            var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
+            var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
+            if (person == null)
+                return new List<Profile>();
+            var profiles = _db.People.FirstOrDefault(x => x.PersonId == person.PersonId).Profile;
+            return null;
+
+        }
+
         public void CreatePerson(Person person)
         {
             _db.People.Add(new Person

@@ -17,6 +17,7 @@ namespace KadrovoeAgentstvo.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Application()
         {
+            this.Requests = new HashSet<Request>();
             this.People = new HashSet<Person>();
         }
     
@@ -29,8 +30,10 @@ namespace KadrovoeAgentstvo.Models
         public string Requirements { get; set; }
     
         public virtual JobDirectory JobDirectory { get; set; }
-        public virtual Speciality Speciality { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Request> Requests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+        public virtual Speciality Speciality { get; set; }
     }
 }

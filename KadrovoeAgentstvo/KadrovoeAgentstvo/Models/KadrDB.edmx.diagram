@@ -13,19 +13,24 @@
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Company" Width="1.5" PointX="3" PointY="14.125" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Profile" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="7.375" PointY="3.875" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Person" Width="1.5" PointX="9.625" PointY="8.375" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Company" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Profile" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Company" Width="1.5" PointX="6" PointY="10.875" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Application" Width="1.5" PointX="9.625" PointY="4.625" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.JobDirectory" Width="1.5" PointX="0.75" PointY="7.625" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_JobDirectory" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_Speciality" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Request" Width="1.5" PointX="12.625" PointY="7.625" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_Application" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Person" Width="1.5" PointX="11.875" PointY="2" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Application" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_AspNetUsers" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Company" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_People" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Profile" Width="1.5" PointX="9.625" PointY="8.625" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="7.375" PointY="3.875" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_Speciality" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Profile" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_Speciality" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
