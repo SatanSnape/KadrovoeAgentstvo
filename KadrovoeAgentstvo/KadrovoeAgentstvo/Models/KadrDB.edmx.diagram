@@ -14,7 +14,7 @@
         <AssociationConnector Association="KadrovoeAgentstvoModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Company" Width="1.5" PointX="6" PointY="10.875" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Application" Width="1.5" PointX="9.625" PointY="4.625" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Application" Width="1.5" PointX="8.625" PointY="3.875" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.JobDirectory" Width="1.5" PointX="0.75" PointY="7.625" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_JobDirectory" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Request" Width="1.5" PointX="12.625" PointY="7.625" />
@@ -25,13 +25,11 @@
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Company" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Requests_People" />
         <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Profile" Width="1.5" PointX="9.625" PointY="8.625" />
-        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="7.625" PointY="3.25" />
+        <EntityTypeShape EntityType="KadrovoeAgentstvoModel.Speciality" Width="1.5" PointX="14.5" PointY="5" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Application_Speciality" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" />
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Profile" />
-        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" ManuallyRouted="true" >
-          <ConnectorPoint PointX="9.125" PointY="3.90625" />
-          <ConnectorPoint PointX="11.875" PointY="3.90625" />
+        <AssociationConnector Association="KadrovoeAgentstvoModel.FK_People_Speciality" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="KadrovoeAgentstvoModel.FK_Profile_Speciality" />
         </Diagram>

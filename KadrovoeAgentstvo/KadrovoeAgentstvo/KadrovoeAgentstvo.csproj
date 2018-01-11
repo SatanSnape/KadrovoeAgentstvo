@@ -258,6 +258,7 @@
     <Compile Include="Models\Profile.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Profs.cs" />
     <Compile Include="Models\Request.cs">
       <DependentUpon>KadrDB.tt</DependentUpon>
     </Compile>
@@ -358,6 +359,10 @@
     <Content Include="Views\Employer\Edit.cshtml" />
     <Content Include="Views\Employer\Delete.cshtml" />
     <Content Include="Views\Aspirant\Index.cshtml" />
+    <Content Include="Views\Aspirant\CreatePerson.cshtml" />
+    <Content Include="Views\Aspirant\CreateProfile.cshtml" />
+    <Content Include="Views\Aspirant\Details.cshtml" />
+    <Content Include="Views\Aspirant\EditProfileData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
