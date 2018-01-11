@@ -12,6 +12,7 @@ namespace KadrovoeAgentstvo.Controllers
     public class AspirantController : Controller
     {
         AspirantDAO _aDao = new AspirantDAO();
+        private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
         public ActionResult Index()
         {
@@ -78,6 +79,9 @@ namespace KadrovoeAgentstvo.Controllers
             var specialities = new SelectList(_aDao.GetAllSpecilities(), "SpecialityId", "Name");
             ViewBag.Specialities = specialities;
             var profile = _aDao.GetProfileById(id);
+            var person = _db.People.FirstOrDefault(x => x.PersonId == profile.PersonId);
+            ViewBag.Person = $"{person.Name} {person.Surname}";
+            profile.People.Add(person);
             return View(profile);
         }
 
