@@ -23,14 +23,14 @@ namespace KadrovoeAgentstvo.Controllers
         public ActionResult CreateProfile(Profile profile)
         {
             dao.CreateProfile(profile);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult CreateProfile()
         {
             var specialities = new SelectList(dao.GetAllSpecilities(), "SpecialityId", "Name");
             ViewBag.Specialities = specialities;
-            return RedirectToAction("Index");
+            return View();
         }
     }
 }
