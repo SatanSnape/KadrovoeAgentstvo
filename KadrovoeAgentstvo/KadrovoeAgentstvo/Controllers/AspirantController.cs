@@ -9,11 +9,13 @@ using System.Web.Mvc;
 
 namespace KadrovoeAgentstvo.Controllers
 {
+    [Authorize]
     public class AspirantController : Controller
     {
         AspirantDAO _aDao = new AspirantDAO();
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
+        [Authorize]
         public ActionResult Index()
         {
             var list = _aDao.GetProfilesByPersonId();
@@ -21,6 +23,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult CreatePerson()
         {
             var specialities = new SelectList(_aDao.GetAllSpecilities(), "SpecialityId", "Name");
@@ -29,6 +32,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult CreatePerson(Person person)
         {
             try
@@ -39,12 +43,12 @@ namespace KadrovoeAgentstvo.Controllers
             }
             catch
             {
-
+                return RedirectToAction("Index");
             }
-            return View("Error");
         }
 
         [HttpGet]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult CreateProfile()
         {
             var specialities = new SelectList(_aDao.GetAllSpecilities(), "SpecialityId", "Name");
@@ -53,6 +57,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult CreateProfile(Profile profile)
         {
             try
@@ -62,10 +67,10 @@ namespace KadrovoeAgentstvo.Controllers
             }
             catch
             {
-
+                return RedirectToAction("Index");
             }
-            return View("Error");
         }
+        [Authorize]
 
         public ActionResult Details(int profileId)
         {
@@ -74,6 +79,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult EditProfileData(int id)
         {
             var specialities = new SelectList(_aDao.GetAllSpecilities(), "SpecialityId", "Name");
@@ -85,6 +91,7 @@ namespace KadrovoeAgentstvo.Controllers
             return View(profile);
         }
 
+        [Authorize(Roles = "Aspirant")]
         public ActionResult EditProfileData(Profile profile)
         {
             try
@@ -94,17 +101,18 @@ namespace KadrovoeAgentstvo.Controllers
             }
             catch
             {
-
-            }
-            return View("Error");
+                return RedirectToAction("Index");
+            }            
         }
 
+        [Authorize(Roles = "Aspirant, Administration, Moderator")]
         public ActionResult DeleteProfile(int id)
         {
             var profile = _aDao.GetProfileDetails(id);
             return View(profile);
         }
 
+        [Authorize(Roles = "Aspirant, Administration, Moderator")]
         public ActionResult Remove(int id)
         {
             _aDao.RemoveProfile(id);

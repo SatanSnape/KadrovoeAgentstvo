@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace KadrovoeAgentstvo.Controllers
 {
+    [Authorize]
     public class EmployerController : Controller
     {
 
@@ -27,6 +28,7 @@ namespace KadrovoeAgentstvo.Controllers
             return View(applicationDetails);
         }
 
+        [Authorize(Roles = "Employer")]
         public ActionResult Create()
         {
             var specialities = new SelectList(specialityDAO.GetAllSpecilities(), "SpecialityId", "Name");
@@ -35,6 +37,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Employer")]
         public ActionResult Create(Application app)
         {
             try
@@ -48,6 +51,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Employer")]
         public ActionResult Edit(int id)
         {
             var specialities = new SelectList(specialityDAO.GetAllSpecilities(), "SpecialityId", "Name");
@@ -57,6 +61,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Employer")]
         public ActionResult Edit(Application app)
         {
             try
@@ -70,6 +75,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Administration, Employer, Moderator")]
         public ActionResult Delete(int id)
         {
             var app = eDAO.GetApplicationById(id);
@@ -77,6 +83,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration, Employer, Moderator")]
         public ActionResult Delete(Application app)
         {
             try
@@ -90,6 +97,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Aspirant")]
         public ActionResult LeaveApplication(int applicationId)
         {
             try
@@ -103,6 +111,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Administration, Employer, Moderator")]
         public ActionResult ShowIntUsers(int applicationId)
         {
             try
