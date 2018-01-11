@@ -13,6 +13,7 @@ namespace KadrovoeAgentstvo.Controllers
 
         EmployerDAO eDAO = new EmployerDAO();
         SpecialityDAO specialityDAO = new SpecialityDAO();
+        private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
         public ActionResult Index()
         {
@@ -95,6 +96,22 @@ namespace KadrovoeAgentstvo.Controllers
             {
                 eDAO.LeaveApplication(applicationId);
                 return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult ShowIntUsers(int applicationId)
+        {
+            try
+            {
+                var spec = _db.Applications.FirstOrDefault(x => x.ApplicationId == applicationId).Speciality;
+                var company = _db.Applications.FirstOrDefault(x => x.ApplicationId == applicationId).Company;
+                ViewBag.Appl = $"{company.Name} {spec.Name}";
+                var interestedUsers = eDAO.ShowIntUsers(applicationId);
+                return View("InterestedUsers", interestedUsers);
             }
             catch
             {

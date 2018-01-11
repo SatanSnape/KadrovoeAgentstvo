@@ -1,0 +1,54 @@
+﻿@model IEnumerable<KadrovoeAgentstvo.Models.Request>
+
+@{
+    ViewBag.Title = "ShowIntUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Interested Users for Application @ViewBag.Appl</h2>
+
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Person.Pathronymic)
+        </th>
+        <th>
+            Person speciality
+        </th>
+        <th>
+            Birth date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+            @Html.HiddenFor(modelItem => item.ApplicationId)        
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Pathronymic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.Speciality.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Person.DateBirth)
+        </td>
+
+    </tr>
+}
+
+</table>

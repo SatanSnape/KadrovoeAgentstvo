@@ -107,5 +107,14 @@ namespace KadrovoeAgentstvo.DAO
             return profile;
         }
 
+        public void RemoveProfile(int id)
+        {
+            var profile = _db.Profiles.FirstOrDefault(x => x.ProfileId == id);
+            var person = _db.People.FirstOrDefault(x => x.PersonId == profile.PersonId);
+            _db.People.Remove(person);
+            _db.Profiles.Remove(profile);
+            _db.SaveChanges();
+        }
+
     }
 }

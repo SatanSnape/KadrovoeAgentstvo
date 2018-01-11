@@ -99,5 +99,17 @@ namespace KadrovoeAgentstvo.Controllers
             return View("Error");
         }
 
+        public ActionResult DeleteProfile(int id)
+        {
+            var profile = _aDao.GetProfileDetails(id);
+            return View(profile);
+        }
+
+        public ActionResult Remove(int id)
+        {
+            _aDao.RemoveProfile(id);
+            return RedirectToAction("Index");
+        }
+
     }
 }

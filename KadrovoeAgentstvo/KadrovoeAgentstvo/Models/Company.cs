@@ -17,7 +17,7 @@ namespace KadrovoeAgentstvo.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Company()
         {
-            this.People = new HashSet<Person>();
+            this.Applications = new HashSet<Application>();
         }
     
         public int CompanyId { get; set; }
@@ -29,6 +29,6 @@ namespace KadrovoeAgentstvo.Models
         public int ApartmentNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> People { get; set; }
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

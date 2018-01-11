@@ -77,6 +77,60 @@
         </dd>
 
     </dl>
+
+    <h4>Company Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Company name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            Company Country
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Country)
+        </dd>
+
+        <dt>
+            Company City
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.City)
+        </dd>
+
+        <dt>
+            Street
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Street)
+        </dd>
+
+        <dt>
+            House number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.HouseNumber)
+        </dd>
+
+        <dt>
+           Apartment number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.ApartmentNumber)
+        </dd>
+
+    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ApplicationId }) |

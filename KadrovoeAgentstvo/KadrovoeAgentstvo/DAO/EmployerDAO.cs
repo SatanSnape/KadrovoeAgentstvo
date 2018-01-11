@@ -35,6 +35,19 @@ namespace KadrovoeAgentstvo.DAO
             logger.Debug("Сохранение Job Directory");
             _db.JobDirectories.Add(jobDirectory);
             _db.SaveChanges();
+            logger.Debug("Создание компании");
+            Company company = new Company
+            {
+                Name = app.Company.Name,
+                City = app.Company.City,
+                Country = app.Company.Country,
+                HouseNumber = app.Company.HouseNumber,
+                Street = app.Company.Street,
+                ApartmentNumber = app.Company.ApartmentNumber
+            };
+            _db.Companies.Add(company);
+            _db.SaveChanges();
+            logger.Debug("Сохранение информации о компании");
             logger.Debug("Создание заявления");
             Application appEntity = new Application
             {
@@ -43,7 +56,8 @@ namespace KadrovoeAgentstvo.DAO
                 SpecialityId = app.SpecialityId,
                 Duties = app.Duties,
                 Requirements = app.Requirements,
-                State = "Заявление создано"
+                State = "Заявление создано",
+                CompanyId = company.CompanyId
             };
             logger.Debug("Создание заявления");
             _db.Applications.Add(appEntity);
@@ -104,6 +118,12 @@ namespace KadrovoeAgentstvo.DAO
             };
             _db.Requests.Add(request);
             _db.SaveChanges();
+        }
+
+        public List<Request> ShowIntUsers(int id)
+        {
+            var requests = _db.Requests.Where(x => x.ApplicationId == id);
+            return requests.ToList();
         }
 
     }

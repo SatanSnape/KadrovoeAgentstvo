@@ -40,7 +40,8 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Leave application", "LeaveApplication", "Employer", new { id = item.ApplicationId }) |
+                @Html.ActionLink("Leave application", "LeaveApplication", new { applicationId = item.ApplicationId }) |
+                @Html.ActionLink("Show interested users", "ShowIntUsers", new { applicationId = item.ApplicationId }) |
             </td>
         </tr>
     }

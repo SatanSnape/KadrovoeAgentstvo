@@ -13,6 +13,38 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            Speciality name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Speciality.Name)
+        </dd>
+
+        <dt>
+            Max salary
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.MaxSalary)
+        </dd>
+
+        <dt>
+            Min salary
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.MinSalary)
+        </dd>
+
+        <dt>
+            Description
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDirectory.Description)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
 
@@ -21,23 +53,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.JobDirectoryId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.JobDirectoryId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SpecialityId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SpecialityId)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Duties)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Duties)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirements)
         </dt>
 
         <dd>
@@ -46,7 +78,62 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    <h4>Company Info</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Company name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Name)
+        </dd>
+
+        <dt>
+            Company Country
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Country)
+        </dd>
+
+        <dt>
+            Company City
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.City)
+        </dd>
+
+        <dt>
+            Street
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.Street)
+        </dd>
+
+        <dt>
+            House number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.HouseNumber)
+        </dd>
+
+        <dt>
+            Apartment number
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.ApartmentNumber)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

@@ -363,6 +363,8 @@
     <Content Include="Views\Aspirant\CreateProfile.cshtml" />
     <Content Include="Views\Aspirant\Details.cshtml" />
     <Content Include="Views\Aspirant\EditProfileData.cshtml" />
+    <Content Include="Views\Aspirant\DeleteProfile.cshtml" />
+    <Content Include="Views\Employer\InterestedUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
