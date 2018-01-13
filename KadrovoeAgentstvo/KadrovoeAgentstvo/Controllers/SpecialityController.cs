@@ -8,23 +8,27 @@ using System.Web.Mvc;
 
 namespace KadrovoeAgentstvo.Controllers
 {
+    [Authorize(Roles = "Administration,Moderator")]
     public class SpecialityController : Controller
     {
 
         SpecialityDAO specDAO = new SpecialityDAO();
 
+        [Authorize(Roles = "Administration,Moderator")]
         public ActionResult Index()
         {
             var specialities = specDAO.GetAllSpecilities();
             return View(specialities);
         }
 
+        [Authorize(Roles = "Administration,Moderator")]
         public ActionResult Create()
         {
             return View();
         }
 
 
+        [Authorize(Roles = "Administration,Moderator")]
         [HttpPost]
         public ActionResult Create(Speciality spec)
         {
@@ -39,13 +43,14 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Administration,Moderator")]
         public ActionResult Edit(int id)
         {
             var speciality = specDAO.GetSpecialityById(id);
             return View(speciality);
         }
 
-        // POST: Speciality/Edit/5
+        [Authorize(Roles = "Administration,Moderator")]
         [HttpPost]
         public ActionResult Edit(Speciality spec)
         {
@@ -60,13 +65,15 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
+        [Authorize(Roles = "Administration,Moderator")]
         [HttpGet]
         public ActionResult Delete(int id)
         {
             var spec = specDAO.GetSpecialityById(id);
             return View(spec);
         }
-        
+
+        [Authorize(Roles = "Administration,Moderator")]
         [HttpPost]
         public ActionResult Delete(Speciality spec)
         {
