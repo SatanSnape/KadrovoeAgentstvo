@@ -25,9 +25,9 @@
         <th>
             Profile created date
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.State)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -46,9 +46,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.State)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Update profile data", "EditProfileData", new { id = item.ProfileId }) |
                 @Html.ActionLink("Show profile details", "Details", new { profileId = item.ProfileId }) |

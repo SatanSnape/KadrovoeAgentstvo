@@ -45,18 +45,19 @@ namespace KadrovoeAgentstvo.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Administration, Moderator")]
-        public ActionResult Delete(int id)
+        public ActionResult DeletePersonView(int id)
         {
             var person = dao.GetPeople().FirstOrDefault(x => x.PersonId == id);
-            return View(person);
+            return View("Delete", person);
         }
 
         [Authorize(Roles = "Administration, Moderator")]
-        public ActionResult DeletePerson(int id)
+        //[HttpPost]
+        public ActionResult DeletePerson(int personId)
         {
             try
             {
-                dao.RemovePerson(id);
+                dao.RemovePerson(personId);
                 return RedirectToAction("Index");
             }
             catch

@@ -37,7 +37,19 @@ namespace KadrovoeAgentstvo.DAO
             var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
             if (user == null)
                 throw new Exception("Пользователь не найден");
-            var personEntity = new Person
+            var personE = _db.People.FirstOrDefault(x => x.UserId == user.Id);
+            var personEntity = new Person();
+            //if (personE != null)
+            //{
+            //    personE.DateBirth = person.DateBirth;
+            //    personE.Name = person.Name;
+            //    personE.Surname = person.Surname;
+            //    person.
+            //    personEntity = personE;
+            //}
+            //else
+            //{
+            personEntity = new Person
             {
                 DateBirth = person.DateBirth,
                 Name = person.Name,
@@ -48,8 +60,19 @@ namespace KadrovoeAgentstvo.DAO
                 UserId = user.Id
             };
             _db.People.Add(personEntity);
+            //}
             _db.SaveChanges();
             return personEntity;
+        }
+
+        public void CreateInitPerson(string id)
+        {
+            Person person = new Person
+            {
+                UserId = id
+            };
+            _db.People.Add(person);
+            _db.SaveChanges();
         }
 
         public void CreateProfile(Profile profile)

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<KadrovoeAgentstvo.Models.Application>
+﻿@using KadrovoeAgentstvo.Constants
+
+@model IEnumerable<KadrovoeAgentstvo.Models.Application>
 
 @{
     ViewBag.Title = "Index";
@@ -37,10 +39,31 @@
                 @Html.DisplayFor(modelItem => item.State)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId }) |
+                @if ((item.State == KadrovoeAgentstvo.Constants.AppState.Draft || item.State == KadrovoeAgentstvo.Constants.AppState.Declined) && !User.IsInRole("Aspirant"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationId })
+                    <text>
+                        |
+                    </text>
+                }
+
+                @if (!User.IsInRole("Aspirant"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId })
+                    <text>
+                        |
+                    </text>
+                }
+
                 @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationId }) |
-                @Html.ActionLink("Leave application", "LeaveApplication", new { applicationId = item.ApplicationId }) |
+
+                @if (User.IsInRole("Aspirant"))
+                {
+                    @Html.ActionLink("Leave application", "LeaveApplication", new { applicationId = item.ApplicationId })
+                    <text>
+                        |
+                    </text>
+                }
                 @Html.ActionLink("Show interested users", "ShowIntUsers", new { applicationId = item.ApplicationId }) |
             </td>
         </tr>

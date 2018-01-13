@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using KadrovoeAgentstvo.Models;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
+using KadrovoeAgentstvo.DAO;
 
 namespace KadrovoeAgentstvo.Controllers
 {
@@ -20,6 +21,7 @@ namespace KadrovoeAgentstvo.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
+        private AspirantDAO aDAO = new AspirantDAO();
 
         public AccountController()
         {
@@ -174,6 +176,7 @@ namespace KadrovoeAgentstvo.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //aDAO.CreateInitPerson(user.Id);
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
                 }

@@ -33,6 +33,12 @@ namespace KadrovoeAgentstvo.DAO
             var person = _db.People.FirstOrDefault(x => x.PersonId == id);
             if (person == null)
                 throw new Exception("Не удалось найти пользователя");
+            var requests = _db.Requests.Where(x => x.PersonId == id);
+            if (requests.Any())
+                _db.Requests.RemoveRange(requests);
+            var resumes = _db.Profiles.Where(x => x.PersonId == id);
+            if (resumes.Any())
+                _db.Profiles.RemoveRange(resumes);
             _db.People.Remove(person);
             _db.SaveChanges();
         }

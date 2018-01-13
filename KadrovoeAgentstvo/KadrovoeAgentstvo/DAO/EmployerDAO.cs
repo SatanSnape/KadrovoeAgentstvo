@@ -1,4 +1,6 @@
-﻿using KadrovoeAgentstvo.Models;
+﻿using KadrovoeAgentstvo.Constants;
+using KadrovoeAgentstvo.Models;
+using Microsoft.AspNet.Identity;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -12,8 +14,16 @@ namespace KadrovoeAgentstvo.DAO
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
-        public List<Application> GetAllApplications() =>
-            _db.Applications.ToList();
+        public List<Application> GetAllApplications()
+        {
+            var applications = _db.Applications.ToList();
+            var currentUser = HttpContext.Current.User.Identity.Name;
+            var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
+            if (user.AspNetRoles.FirstOrDefault().Id == "Aspirant")
+                if (applications.Any())
+                    applications = applications.Where(x => x.State == AppState.Approved).ToList();
+            return applications;
+        }
 
         public Application GetApplicationById(int id) =>
             _db.Applications.FirstOrDefault(x => x.ApplicationId == id);
@@ -29,7 +39,7 @@ namespace KadrovoeAgentstvo.DAO
                 Date = DateTime.UtcNow,
                 MaxSalary = app.JobDirectory.MaxSalary,
                 MinSalary = app.JobDirectory.MinSalary,
-                State = "Заявление создано",
+                State = AppState.Draft,
                 Description = app.JobDirectory.Description
             };
             logger.Debug("Сохранение Job Directory");
@@ -92,7 +102,7 @@ namespace KadrovoeAgentstvo.DAO
             {
                 logger.Error("Запрашиваемые подробности заявления не найдены");
                 throw new Exception("Запрашиваемые подробности заявления не найдены");
-            }   
+            }
             var appEntity = _db.Applications.FirstOrDefault(x => x.ApplicationId == app.ApplicationId);
             if (appEntity == null)
             {
@@ -105,12 +115,14 @@ namespace KadrovoeAgentstvo.DAO
             _db.SaveChanges();
         }
 
-        public void LeaveApplication(int appId)
+        public bool LeaveApplication(int appId)
         {
             logger.Debug("Оставление заявки на пользователя на заявление работодателя");
             var currentUser = HttpContext.Current.User.Identity.Name;
             var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
             var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
+            if (person == null)
+                return false;
             Request request = new Request
             {
                 ApplicationId = appId,
@@ -118,12 +130,52 @@ namespace KadrovoeAgentstvo.DAO
             };
             _db.Requests.Add(request);
             _db.SaveChanges();
+            return true;
+        }
+
+        public bool CheckRequest(int appId)
+        {
+            logger.Debug("Проверка оставлял ли пользователь заявку на это заявление");
+            var currentUser = HttpContext.Current.User.Identity.Name;
+            var user = _db.AspNetUsers.FirstOrDefault(x => x.UserName == currentUser);
+            var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
+            if (person == null)
+                return true;
+            var request = _db.Requests.FirstOrDefault(x => x.PersonId == person.PersonId);
+            if (request == null)
+                return true;
+            else
+                return false;
         }
 
         public List<Request> ShowIntUsers(int id)
         {
             var requests = _db.Requests.Where(x => x.ApplicationId == id);
             return requests.ToList();
+        }
+
+        public void ApproveApp(int id)
+        {
+            var appEntity = _db.Applications.FirstOrDefault(x => x.ApplicationId == id);
+            if (appEntity == null)
+            {
+                logger.Error("Запрашиваемое заявление не найдено");
+                throw new Exception("Запрашиваемое заявление не найдено");
+            }
+            appEntity.State = AppState.Approved;
+            _db.SaveChanges();
+        }
+
+        public void DeclineApp(int id)
+        {
+            var appEntity = _db.Applications.FirstOrDefault(x => x.ApplicationId == id);
+            if (appEntity == null)
+            {
+                logger.Error("Запрашиваемое заявление не найдено");
+                throw new Exception("Запрашиваемое заявление не найдено");
+            }
+            appEntity.State = AppState.Declined;
+            _db.SaveChanges();
         }
 
     }

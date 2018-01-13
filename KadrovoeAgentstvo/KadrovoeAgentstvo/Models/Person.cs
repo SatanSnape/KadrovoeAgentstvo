@@ -25,9 +25,9 @@ namespace KadrovoeAgentstvo.Models
         public string Surname { get; set; }
         public string Pathronymic { get; set; }
         public string Passport { get; set; }
-        public System.DateTime DateBirth { get; set; }
+        public Nullable<System.DateTime> DateBirth { get; set; }
         public Nullable<int> ApplicationId { get; set; }
-        public int SpecialityId { get; set; }
+        public Nullable<int> SpecialityId { get; set; }
         public string UserId { get; set; }
         public Nullable<int> ProfileId { get; set; }
     

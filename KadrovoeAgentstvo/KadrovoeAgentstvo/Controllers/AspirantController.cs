@@ -16,6 +16,7 @@ namespace KadrovoeAgentstvo.Controllers
         private KadrovoeAgentstvoEntities _db = new KadrovoeAgentstvoEntities();
 
         [Authorize]
+        [Authorize(Roles = "Aspirant")]
         public ActionResult Index()
         {
             var list = _aDao.GetProfilesByPersonId();
@@ -70,8 +71,8 @@ namespace KadrovoeAgentstvo.Controllers
                 return RedirectToAction("Index");
             }
         }
-        [Authorize]
 
+        [Authorize(Roles = "Aspirant,Administration,Moderator")]
         public ActionResult Details(int profileId)
         {
             var profile = _aDao.GetProfileDetails(profileId);
@@ -105,14 +106,14 @@ namespace KadrovoeAgentstvo.Controllers
             }            
         }
 
-        [Authorize(Roles = "Aspirant, Administration, Moderator")]
+        [Authorize(Roles = "Aspirant,Administration,Moderator")]
         public ActionResult DeleteProfile(int id)
         {
             var profile = _aDao.GetProfileDetails(id);
             return View(profile);
         }
 
-        [Authorize(Roles = "Aspirant, Administration, Moderator")]
+        [Authorize(Roles = "Aspirant,Administration,Moderator")]
         public ActionResult Remove(int id)
         {
             _aDao.RemoveProfile(id);

@@ -102,8 +102,14 @@ namespace KadrovoeAgentstvo.Controllers
         {
             try
             {
-                eDAO.LeaveApplication(applicationId);
-                return RedirectToAction("Index");
+                var check = eDAO.CheckRequest(applicationId);
+                if (!check)
+                    return View("Requested");
+                var state = eDAO.LeaveApplication(applicationId);
+                if (state)
+                    return RedirectToAction("Index");
+                else
+                    return View("ProfileNotFound");
             }
             catch
             {
@@ -111,7 +117,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
-        [Authorize(Roles = "Administration, Employer, Moderator")]
+        [Authorize(Roles = "Administration,Moderator,Aspirant")]
         public ActionResult ShowIntUsers(int applicationId)
         {
             try
@@ -120,7 +126,38 @@ namespace KadrovoeAgentstvo.Controllers
                 var company = _db.Applications.FirstOrDefault(x => x.ApplicationId == applicationId).Company;
                 ViewBag.Appl = $"{company.Name} {spec.Name}";
                 var interestedUsers = eDAO.ShowIntUsers(applicationId);
-                return View("InterestedUsers", interestedUsers);
+                if (interestedUsers.Any())
+                    return View("InterestedUsers", interestedUsers);
+                else
+                    return View("ThereIsNoInterestedUsers");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [Authorize(Roles = "Moderator")]
+        public ActionResult ApproveApp(int id)
+        {
+            try
+            {
+                eDAO.ApproveApp(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [Authorize(Roles = "Moderator")]
+        public ActionResult DeclineApp(int id)
+        {
+            try
+            {
+                eDAO.DeclineApp(id);
+                return RedirectToAction("Index");
             }
             catch
             {
