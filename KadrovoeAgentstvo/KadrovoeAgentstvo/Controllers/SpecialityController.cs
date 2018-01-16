@@ -8,13 +8,13 @@ using System.Web.Mvc;
 
 namespace KadrovoeAgentstvo.Controllers
 {
-    [Authorize(Roles = "Administration")]
+    //[Authorize(Roles = "Administration")]
     public class SpecialityController : Controller
     {
 
         SpecialityDAO specDAO = new SpecialityDAO();
 
-        [Authorize(Roles = "Administration")]
+        //[Authorize(Roles = "Administration")]
         public ActionResult Index()
         {
             var specialities = specDAO.GetAllSpecilities();
