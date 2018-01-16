@@ -87,6 +87,7 @@ namespace KadrovoeAgentstvo.DAO
             appEntity.SpecialityId = app.SpecialityId;
             appEntity.Duties = app.Duties;
             appEntity.Requirements = app.Requirements;
+            appEntity.State = AppState.Draft;
             appEntity.JobDirectory.Description = app.JobDirectory.Description;
             appEntity.JobDirectory.MaxSalary = app.JobDirectory.MaxSalary;
             appEntity.JobDirectory.MinSalary = app.JobDirectory.MinSalary;

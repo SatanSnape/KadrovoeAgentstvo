@@ -65,7 +65,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
-        [Authorize(Roles = "Administration")]
+        [Authorize(Roles = "Administration,Moderator")]
         [HttpGet]
         public ActionResult Delete(int id)
         {

@@ -75,7 +75,7 @@ namespace KadrovoeAgentstvo.Controllers
             }
         }
 
-        [Authorize(Roles = "Administration, Employer, Moderator")]
+        [Authorize(Roles = "Administration,Employer,Moderator")]
         public ActionResult Delete(int id)
         {
             var app = eDAO.GetApplicationById(id);
@@ -83,7 +83,7 @@ namespace KadrovoeAgentstvo.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administration, Employer, Moderator")]
+        [Authorize(Roles = "Administration,Employer,Moderator")]
         public ActionResult Delete(Application app)
         {
             try
