@@ -66,7 +66,7 @@ namespace KadrovoeAgentstvo.DAO
                 SpecialityId = app.SpecialityId,
                 Duties = app.Duties,
                 Requirements = app.Requirements,
-                State = "Заявление создано",
+                State = AppState.Draft,
                 CompanyId = company.CompanyId
             };
             logger.Debug("Создание заявления");

@@ -1,1 +1,13 @@
-2018-01-15 20:52:25.3566|DEBUG|KadrovoeAgentstvo.DAO.SpecialityDAO|Редактирование вакансии
+2018-01-16 22:23:12.1721|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
+2018-01-16 22:23:12.2872|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
+2018-01-16 22:23:12.6278|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
+2018-01-16 22:23:12.6428|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
+2018-01-16 22:23:12.6428|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
+2018-01-16 22:23:12.6428|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
+2018-01-16 23:07:05.7305|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Поиск заявления для редактирования
+2018-01-16 23:07:05.7935|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Редактирование заявления
+2018-01-16 23:07:05.7986|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Применение изменений для заявления
+2018-01-16 23:07:30.1019|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Начало удаления заявления
+2018-01-16 23:07:30.1219|ERROR|KadrovoeAgentstvo.DAO.EmployerDAO|Запрашиваемые подробности заявления не найдены
+2018-01-16 23:07:34.3626|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Начало удаления заявления
+2018-01-16 23:07:34.3626|ERROR|KadrovoeAgentstvo.DAO.EmployerDAO|Запрашиваемые подробности заявления не найдены
