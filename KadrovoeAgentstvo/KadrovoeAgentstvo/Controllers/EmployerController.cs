@@ -111,7 +111,7 @@ namespace KadrovoeAgentstvo.Controllers
                 else
                     return View("ProfileNotFound");
             }
-            catch
+            catch(Exception ex)
             {
                 return RedirectToAction("Index");
             }

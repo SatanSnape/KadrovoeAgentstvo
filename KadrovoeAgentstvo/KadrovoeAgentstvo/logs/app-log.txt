@@ -1,29 +1,10 @@
-2018-01-17 17:44:15.9183|DEBUG|KadrovoeAgentstvo.DAO.SpecialityDAO|Создание новой вакансии
-2018-01-17 17:44:16.0423|DEBUG|KadrovoeAgentstvo.DAO.SpecialityDAO|Сохранение новой вакансии
-2018-01-17 18:04:21.8244|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
-2018-01-17 18:04:21.8264|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
-2018-01-17 18:04:22.2096|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
-2018-01-17 18:04:22.2527|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
-2018-01-17 18:04:22.2527|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:04:22.2527|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:05:37.2473|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Поиск заявления для редактирования
-2018-01-17 18:05:37.2473|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Редактирование заявления
-2018-01-17 18:05:37.2703|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Применение изменений для заявления
-2018-01-17 18:21:48.0835|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
-2018-01-17 18:21:48.0835|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
-2018-01-17 18:21:48.1326|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
-2018-01-17 18:21:48.1476|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
-2018-01-17 18:21:48.1476|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:21:48.1476|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:25:23.5601|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
-2018-01-17 18:25:23.5601|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
-2018-01-17 18:25:23.6051|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
-2018-01-17 18:25:23.6261|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
-2018-01-17 18:25:23.6261|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:25:23.6261|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:27:52.6409|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
-2018-01-17 18:27:52.6409|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
-2018-01-17 18:27:52.6649|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
-2018-01-17 18:27:52.6889|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
-2018-01-17 18:27:52.6889|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
-2018-01-17 18:27:52.6889|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
+2018-01-18 01:18:34.0133|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Проверка оставлял ли пользователь заявку на это заявление
+2018-01-18 01:18:48.5008|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Оставление заявки на пользователя на заявление работодателя
+2018-01-18 01:21:41.8004|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Проверка оставлял ли пользователь заявку на это заявление
+2018-01-18 01:21:45.7192|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Оставление заявки на пользователя на заявление работодателя
+2018-01-18 01:26:50.7653|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Проверка оставлял ли пользователь заявку на это заявление
+2018-01-18 01:26:58.3821|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Оставление заявки на пользователя на заявление работодателя
+2018-01-18 01:27:48.8431|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Проверка оставлял ли пользователь заявку на это заявление
+2018-01-18 01:27:53.2051|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Оставление заявки на пользователя на заявление работодателя
+2018-01-18 01:35:29.3031|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Проверка оставлял ли пользователь заявку на это заявление
+2018-01-18 01:35:36.1916|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Оставление заявки на пользователя на заявление работодателя

@@ -107,13 +107,13 @@
             <PropertyRef Name="PersonId" />
           </Key>
           <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" />
-          <Property Name="Surname" Type="varchar" MaxLength="100" />
-          <Property Name="Pathronymic" Type="varchar" MaxLength="100" />
-          <Property Name="Passport" Type="varchar" MaxLength="100" />
-          <Property Name="DateBirth" Type="datetime" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pathronymic" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Passport" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateBirth" Type="datetime" Nullable="false" />
           <Property Name="ApplicationId" Type="int" />
-          <Property Name="SpecialityId" Type="int" />
+          <Property Name="SpecialityId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="ProfileId" Type="int" />
         </EntityType>
@@ -132,7 +132,7 @@
           <Key>
             <PropertyRef Name="RequestId" />
           </Key>
-          <Property Name="RequestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
           <Property Name="ApplicationId" Type="int" Nullable="false" />
           <Property Name="PersonId" Type="int" Nullable="false" />
         </EntityType>
@@ -142,16 +142,6 @@
           </Key>
           <Property Name="SpecialityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Application_Company">
           <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
@@ -282,7 +272,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_People_Speciality">
-          <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+          <End Role="Speciality" Type="Self.Speciality" Multiplicity="1" />
           <End Role="People" Type="Self.People" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Speciality">
@@ -355,7 +345,6 @@
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Application_Company" Association="Self.FK_Application_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Application" EntitySet="Application" />
@@ -520,19 +509,14 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="KadrovoeAgentstvoModel.C__MigrationHistory" />
+          <EntitySet Name="Applications" EntityType="KadrovoeAgentstvoModel.Application" />
           <EntitySet Name="Companies" EntityType="KadrovoeAgentstvoModel.Company" />
           <EntitySet Name="JobDirectories" EntityType="KadrovoeAgentstvoModel.JobDirectory" />
+          <EntitySet Name="People" EntityType="KadrovoeAgentstvoModel.Person" />
           <EntitySet Name="Profiles" EntityType="KadrovoeAgentstvoModel.Profile" />
+          <EntitySet Name="Requests" EntityType="KadrovoeAgentstvoModel.Request" />
           <EntitySet Name="Specialities" EntityType="KadrovoeAgentstvoModel.Speciality" />
-          <AssociationSet Name="FK_Profile_JobDirectory" Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory">
-            <End Role="JobDirectory" EntitySet="JobDirectories" />
-            <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Profile_Speciality" Association="KadrovoeAgentstvoModel.FK_Profile_Speciality">
-            <End Role="Speciality" EntitySet="Specialities" />
-            <End Role="Profile" EntitySet="Profiles" />
-          </AssociationSet>
-          <EntitySet Name="Applications" EntityType="KadrovoeAgentstvoModel.Application" />
           <AssociationSet Name="FK_Application_Company" Association="KadrovoeAgentstvoModel.FK_Application_Company">
             <End Role="Company" EntitySet="Companies" />
             <End Role="Application" EntitySet="Applications" />
@@ -545,16 +529,21 @@
             <End Role="Speciality" EntitySet="Specialities" />
             <End Role="Application" EntitySet="Applications" />
           </AssociationSet>
-          <EntitySet Name="C__MigrationHistory" EntityType="KadrovoeAgentstvoModel.C__MigrationHistory" />
-          <EntitySet Name="sysdiagrams" EntityType="KadrovoeAgentstvoModel.sysdiagram" />
-          <EntitySet Name="People" EntityType="KadrovoeAgentstvoModel.Person" />
           <AssociationSet Name="FK_People_Application" Association="KadrovoeAgentstvoModel.FK_People_Application">
             <End Role="Application" EntitySet="Applications" />
             <End Role="Person" EntitySet="People" />
           </AssociationSet>
+          <AssociationSet Name="FK_Requests_Application" Association="KadrovoeAgentstvoModel.FK_Requests_Application">
+            <End Role="Application" EntitySet="Applications" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
           <AssociationSet Name="FK_People_AspNetUsers" Association="KadrovoeAgentstvoModel.FK_People_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="Person" EntitySet="People" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_JobDirectory" Association="KadrovoeAgentstvoModel.FK_Profile_JobDirectory">
+            <End Role="JobDirectory" EntitySet="JobDirectories" />
+            <End Role="Profile" EntitySet="Profiles" />
           </AssociationSet>
           <AssociationSet Name="FK_People_Profile" Association="KadrovoeAgentstvoModel.FK_People_Profile">
             <End Role="Profile" EntitySet="Profiles" />
@@ -564,16 +553,43 @@
             <End Role="Speciality" EntitySet="Specialities" />
             <End Role="Person" EntitySet="People" />
           </AssociationSet>
-          <EntitySet Name="Requests" EntityType="KadrovoeAgentstvoModel.Request" />
-          <AssociationSet Name="FK_Requests_Application" Association="KadrovoeAgentstvoModel.FK_Requests_Application">
-            <End Role="Application" EntitySet="Applications" />
-            <End Role="Request" EntitySet="Requests" />
-          </AssociationSet>
           <AssociationSet Name="FK_Requests_People" Association="KadrovoeAgentstvoModel.FK_Requests_People">
             <End Role="Person" EntitySet="People" />
             <End Role="Request" EntitySet="Requests" />
           </AssociationSet>
+          <AssociationSet Name="FK_Profile_Speciality" Association="KadrovoeAgentstvoModel.FK_Profile_Speciality">
+            <End Role="Speciality" EntitySet="Specialities" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
           </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="JobDirectoryId" Type="Int32" Nullable="false" />
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Duties" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="Requirements" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="KadrovoeAgentstvoModel.FK_Application_Company" FromRole="Application" ToRole="Company" />
+          <NavigationProperty Name="JobDirectory" Relationship="KadrovoeAgentstvoModel.FK_Application_JobDirectory" FromRole="Application" ToRole="JobDirectory" />
+          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_Application_Speciality" FromRole="Application" ToRole="Speciality" />
+          <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Application" ToRole="Person" />
+          <NavigationProperty Name="Requests" Relationship="KadrovoeAgentstvoModel.FK_Requests_Application" FromRole="Application" ToRole="Request" />
+        </EntityType>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="CompanyId" />
@@ -597,8 +613,28 @@
           <Property Name="MinSalary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="MaxSalary" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Description" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Profiles" Relationship="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" FromRole="JobDirectory" ToRole="Profile" />
           <NavigationProperty Name="Applications" Relationship="KadrovoeAgentstvoModel.FK_Application_JobDirectory" FromRole="JobDirectory" ToRole="Application" />
+          <NavigationProperty Name="Profiles" Relationship="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" FromRole="JobDirectory" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Pathronymic" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Passport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ApplicationId" Type="Int32" />
+          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProfileId" Type="Int32" />
+          <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Person" ToRole="Application" />
+          <NavigationProperty Name="AspNetUser" Relationship="KadrovoeAgentstvoModel.FK_People_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
+          <NavigationProperty Name="Profile" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Person" ToRole="Profile" />
+          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Person" ToRole="Speciality" />
+          <NavigationProperty Name="Requests" Relationship="KadrovoeAgentstvoModel.FK_Requests_People" FromRole="Person" ToRole="Request" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -611,8 +647,18 @@
           <Property Name="PersonId" Type="Int32" />
           <Property Name="SpecialityId" Type="Int32" />
           <NavigationProperty Name="JobDirectory" Relationship="KadrovoeAgentstvoModel.FK_Profile_JobDirectory" FromRole="Profile" ToRole="JobDirectory" />
-          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_Profile_Speciality" FromRole="Profile" ToRole="Speciality" />
           <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Profile" ToRole="Person" />
+          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_Profile_Speciality" FromRole="Profile" ToRole="Speciality" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="RequestId" />
+          </Key>
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_Requests_Application" FromRole="Request" ToRole="Application" />
+          <NavigationProperty Name="Person" Relationship="KadrovoeAgentstvoModel.FK_Requests_People" FromRole="Request" ToRole="Person" />
         </EntityType>
         <EntityType Name="Speciality">
           <Key>
@@ -620,51 +666,9 @@
           </Key>
           <Property Name="SpecialityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Profiles" Relationship="KadrovoeAgentstvoModel.FK_Profile_Speciality" FromRole="Speciality" ToRole="Profile" />
           <NavigationProperty Name="Applications" Relationship="KadrovoeAgentstvoModel.FK_Application_Speciality" FromRole="Speciality" ToRole="Application" />
           <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Speciality" ToRole="Person" />
-        </EntityType>
-        <Association Name="FK_Profile_JobDirectory">
-          <End Type="KadrovoeAgentstvoModel.JobDirectory" Role="JobDirectory" Multiplicity="0..1" />
-          <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JobDirectory">
-              <PropertyRef Name="JobDirectoryId" />
-            </Principal>
-            <Dependent Role="Profile">
-              <PropertyRef Name="JobDirectoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Profile_Speciality">
-          <End Type="KadrovoeAgentstvoModel.Speciality" Role="Speciality" Multiplicity="0..1" />
-          <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Speciality">
-              <PropertyRef Name="SpecialityId" />
-            </Principal>
-            <Dependent Role="Profile">
-              <PropertyRef Name="SpecialityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Application">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="JobDirectoryId" Type="Int32" Nullable="false" />
-          <Property Name="SpecialityId" Type="Int32" Nullable="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Duties" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Name="Requirements" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyId" Type="Int32" />
-          <NavigationProperty Name="Company" Relationship="KadrovoeAgentstvoModel.FK_Application_Company" FromRole="Application" ToRole="Company" />
-          <NavigationProperty Name="JobDirectory" Relationship="KadrovoeAgentstvoModel.FK_Application_JobDirectory" FromRole="Application" ToRole="JobDirectory" />
-          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_Application_Speciality" FromRole="Application" ToRole="Speciality" />
-          <NavigationProperty Name="People" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Application" ToRole="Person" />
-          <NavigationProperty Name="Requests" Relationship="KadrovoeAgentstvoModel.FK_Requests_Application" FromRole="Application" ToRole="Request" />
+          <NavigationProperty Name="Profiles" Relationship="KadrovoeAgentstvoModel.FK_Profile_Speciality" FromRole="Speciality" ToRole="Profile" />
         </EntityType>
         <Association Name="FK_Application_Company">
           <End Type="KadrovoeAgentstvoModel.Company" Role="Company" Multiplicity="0..1" />
@@ -702,46 +706,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="PersonId" />
-          </Key>
-          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Pathronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Passport" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateBirth" Type="DateTime" Precision="3" />
-          <Property Name="ApplicationId" Type="Int32" />
-          <Property Name="SpecialityId" Type="Int32" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProfileId" Type="Int32" />
-          <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_People_Application" FromRole="Person" ToRole="Application" />
-          <NavigationProperty Name="AspNetUser" Relationship="KadrovoeAgentstvoModel.FK_People_AspNetUsers" FromRole="Person" ToRole="AspNetUser" />
-          <NavigationProperty Name="Profile" Relationship="KadrovoeAgentstvoModel.FK_People_Profile" FromRole="Person" ToRole="Profile" />
-          <NavigationProperty Name="Speciality" Relationship="KadrovoeAgentstvoModel.FK_People_Speciality" FromRole="Person" ToRole="Speciality" />
-          <NavigationProperty Name="Requests" Relationship="KadrovoeAgentstvoModel.FK_Requests_People" FromRole="Person" ToRole="Request" />
-        </EntityType>
         <Association Name="FK_People_Application">
           <End Type="KadrovoeAgentstvoModel.Application" Role="Application" Multiplicity="0..1" />
           <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
@@ -750,6 +714,18 @@
               <PropertyRef Name="ApplicationId" />
             </Principal>
             <Dependent Role="Person">
+              <PropertyRef Name="ApplicationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requests_Application">
+          <End Type="KadrovoeAgentstvoModel.Application" Role="Application" Multiplicity="1" />
+          <End Type="KadrovoeAgentstvoModel.Request" Role="Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ApplicationId" />
+            </Principal>
+            <Dependent Role="Request">
               <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
@@ -766,6 +742,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Profile_JobDirectory">
+          <End Type="KadrovoeAgentstvoModel.JobDirectory" Role="JobDirectory" Multiplicity="0..1" />
+          <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobDirectory">
+              <PropertyRef Name="JobDirectoryId" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="JobDirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_People_Profile">
           <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="0..1" />
           <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
@@ -779,7 +767,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_People_Speciality">
-          <End Type="KadrovoeAgentstvoModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="KadrovoeAgentstvoModel.Speciality" Role="Speciality" Multiplicity="1" />
           <End Type="KadrovoeAgentstvoModel.Person" Role="Person" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Speciality">
@@ -787,28 +775,6 @@
             </Principal>
             <Dependent Role="Person">
               <PropertyRef Name="SpecialityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Request">
-          <Key>
-            <PropertyRef Name="RequestId" />
-          </Key>
-          <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
-          <Property Name="PersonId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Application" Relationship="KadrovoeAgentstvoModel.FK_Requests_Application" FromRole="Request" ToRole="Application" />
-          <NavigationProperty Name="Person" Relationship="KadrovoeAgentstvoModel.FK_Requests_People" FromRole="Request" ToRole="Person" />
-        </EntityType>
-        <Association Name="FK_Requests_Application">
-          <End Type="KadrovoeAgentstvoModel.Application" Role="Application" Multiplicity="1" />
-          <End Type="KadrovoeAgentstvoModel.Request" Role="Request" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Application">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Request">
-              <PropertyRef Name="ApplicationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -821,6 +787,18 @@
             </Principal>
             <Dependent Role="Request">
               <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Speciality">
+          <End Type="KadrovoeAgentstvoModel.Speciality" Role="Speciality" Multiplicity="0..1" />
+          <End Type="KadrovoeAgentstvoModel.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Speciality">
+              <PropertyRef Name="SpecialityId" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="SpecialityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -883,6 +861,30 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+                <ScalarProperty Name="Duties" ColumnName="Duties" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Companies">
             <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Company">
               <MappingFragment StoreEntitySet="Company">
@@ -908,61 +910,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Profile">
-              <MappingFragment StoreEntitySet="Profile">
-                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-                <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Specialities">
-            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Speciality">
-              <MappingFragment StoreEntitySet="Speciality">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Application">
-              <MappingFragment StoreEntitySet="Application">
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="Requirements" ColumnName="Requirements" />
-                <ScalarProperty Name="Duties" ColumnName="Duties" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
-                <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Person">
               <MappingFragment StoreEntitySet="People">
@@ -979,12 +926,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="JobDirectoryId" ColumnName="JobDirectoryId" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Requests">
             <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Request">
               <MappingFragment StoreEntitySet="Requests">
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specialities">
+            <EntityTypeMapping TypeName="KadrovoeAgentstvoModel.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SpecialityId" ColumnName="SpecialityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -28,8 +28,8 @@ namespace KadrovoeAgentstvo.Models
         public Nullable<int> SpecialityId { get; set; }
     
         public virtual JobDirectory JobDirectory { get; set; }
-        public virtual Speciality Speciality { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+        public virtual Speciality Speciality { get; set; }
     }
 }

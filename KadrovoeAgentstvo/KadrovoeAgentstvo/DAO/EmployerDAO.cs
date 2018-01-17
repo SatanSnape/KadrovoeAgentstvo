@@ -124,8 +124,13 @@ namespace KadrovoeAgentstvo.DAO
             var person = _db.People.FirstOrDefault(x => x.UserId == user.Id);
             if (person == null)
                 return false;
+           // var requests = _db.Requests.AsQueryable();
+            //int id = 1;
+            //if (requests.Any())
+            //    id = requests.Max(x => x.RequestId) + 1;
             Request request = new Request
             {
+               // RequestId = id,
                 ApplicationId = appId,
                 PersonId = person.PersonId
             };

@@ -1,0 +1,6 @@
+2018-01-12 13:05:57.5398|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание Job Directory
+2018-01-12 13:05:59.2087|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение Job Directory
+2018-01-12 13:05:59.3160|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание компании
+2018-01-12 13:05:59.3401|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Сохранение информации о компании
+2018-01-12 13:05:59.3401|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
+2018-01-12 13:05:59.3401|DEBUG|KadrovoeAgentstvo.DAO.EmployerDAO|Создание заявления
