@@ -279,6 +279,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="logs\app-log.txt" />
+    <Content Include="logs\archives\app-log.0.txt" />
+    <Content Include="logs\archives\app-log.1.txt" />
+    <Content Include="logs\archives\app-log.2.txt" />
+    <Content Include="logs\archives\app-log.3.txt" />
     <Content Include="Models\KadrDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>KadrDB.edmx</DependentUpon>
@@ -371,6 +376,9 @@
     <Content Include="Views\Employer\InterestedUsers.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
     <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Employer\ProfileNotFound.cshtml" />
+    <Content Include="Views\Employer\Requested.cshtml" />
+    <Content Include="Views\Employer\ThereIsNoInterestedUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
